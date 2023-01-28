@@ -1,3 +1,5 @@
+import random
+
 board = [' ' for x in range(10)]
 
 
@@ -86,3 +88,9 @@ def aiMove():
     return move
 
 
+def selectRandom(list):
+    ln = len(list)
+    rand = random.randrange(0, ln)
+    return list[rand]
+
+    
