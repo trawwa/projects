@@ -8,3 +8,10 @@ def printBoard(board):
     print("---------")
     print(" " + board[7] + "| " + board[8] + "| " + board[9] + "| ")
     print("---------")
+
+
+def isBoardFull(board):
+    if board.count(" ") > 1:
+        return False
+    else:
+        return True
