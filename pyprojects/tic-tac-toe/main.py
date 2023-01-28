@@ -52,3 +52,37 @@ def playerMove():
                  print("Plese type number whithin the range.")
         except:
             print("Please type a number.")
+
+
+def aiMove():
+    possibleMoves = [x for x, letter in enumerate(board) if letter == ' ' and x != 0]
+
+    move = 0 
+    for letter in ['o', 'x']:
+        for i in possibleMoves:
+            boardCopy = board[:]
+            boardCopy[i] = letter
+            if isWinner(boardCopy, letter):
+                move = i
+                return move
+    
+    cornersOpen = []
+    for i in possibleMoves:
+        if i in [1, 3, 7, 9]:
+            cornersOpen.apend(i)
+    if len(cornersOpen) > 0:
+        more = selectRandom(cornersOpen)
+        return move
+    if 5 in possibleMoves:
+        move = 5
+        return move
+    
+    edgesOpen = []
+    for i in possibleMoves:
+        if i in [2, 4, 6, 8]:
+            edgesOpen.append(i)
+    if len(edgesOpen) > 0:
+        move = selectRandom(edgesOpen)
+    return move
+
+
