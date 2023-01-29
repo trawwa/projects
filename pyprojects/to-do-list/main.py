@@ -61,7 +61,7 @@ if __name__ == "__main__":
     guiWindow.title("To-Do List")
     guiWindow.geometry("665x400+550+250")
     guiWindow.resizable(0, 0)
-    guiWindow.configure(bg = "#B5E5CF")
+    guiWindow.configure(bg="#B5E5CF")
 
     connection = sql.connect('listOfTasks.db')
     cursor = connection.cursor()
@@ -73,6 +73,23 @@ if __name__ == "__main__":
     functionsFrame.pack(side='top', expand=True, fill='both')
     taskLabel = Label(functionsFrame,
                       text='Enter The Task:',
-                      font=("arial", "14", "block"),
+                      font=("arial", "14", "bold"),
                       background="black",
                       foreground="white")
+
+    taskLabel.place(x=20, y=30)
+
+    taskField = Entry(functionsFrame,
+                      font=("arial", "14", "bold"),
+                      width=42,
+                      background="black",
+                      foreground="white")
+
+    taskField.place(x=180, y=30)
+
+    addButton = Button(functionsFrame,
+                       text="Add Task",
+                       width=15,
+                       bg='#D4AC0D',
+                       font=("arial", "14", "bold"),
+                       command=addTask)
