@@ -56,3 +56,23 @@ def retrieveDatabase():
         tasks.append(row[0])
 
 
+if __name__ == "__main__":
+    guiWindow = Tk()
+    guiWindow.title("To-Do List")
+    guiWindow.geometry("665x400+550+250")
+    guiWindow.resizable(0, 0)
+    guiWindow.configure(bg = "#B5E5CF")
+
+    connection = sql.connect('listOfTasks.db')
+    cursor = connection.cursor()
+    cursor.execute('create table if not exists tasks (little text)')
+
+    tasks = []
+
+    functionsFrame = Frame(guiWindow, bg="black")
+    functionsFrame.pack(side='top', expand=True, fill='both')
+    taskLabel = Label(functionsFrame,
+                      text='Enter The Task:',
+                      font=("arial", "14", "block"),
+                      background="black",
+                      foreground="white")
