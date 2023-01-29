@@ -30,3 +30,29 @@ def deleteTask():
             cursor.execute('delete from tasks where title = ?', (valueFromList,))
     except:
         messagebox.showinfo('Error!', 'No Task Selected. Cannot Delete.')
+
+
+def deleteAllTasks():
+    messageBox = messagebox.askyesno('Delete All', 'Are You Sure?')
+    if messageBox == True:
+        while(len(tasks) != 0):
+            tasks.pop()
+        cursor.execute('delete from tasks')
+        listUpdate()
+
+def clearList():
+    taskListbox.delete(0, 'end')
+
+
+def close():
+    print(tasks)
+    guiWindow.destroy()
+
+
+def retrieveDatabase():
+    while(len(tasks) != 0):
+        tasks.pop()
+    for row in cursor.execute('select title from tasks'):
+        tasks.append(row[0])
+
+
