@@ -1,6 +1,6 @@
 # projects
 
-- include:
+include:
 
 + FizzBuzz
 + tic-tac-toe
