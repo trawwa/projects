@@ -93,3 +93,39 @@ if __name__ == "__main__":
                        bg='#D4AC0D',
                        font=("arial", "14", "bold"),
                        command=addTask)
+
+    delButton = Button(functionsFrame,
+                       text="Delete Task",
+                       width=15,
+                       bg='#D4AC0D',
+                       font=('arial', '14', 'bold'),
+                       command=deleteTask)
+
+    delAllButton = Button(functionsFrame,
+                          text="Delete All Button",
+                          width=15,
+                          bg='#D4AC0D',
+                          font=('arial', '14', 'bold'),
+                          command=deleteAllTasks)
+
+    exitButton = Button(functionsFrame,
+                        text='Exit',
+                        width=52,
+                        bg='#D4AC0D',
+                        font=('arial', '14', 'bold'),
+                        command=close)
+
+    addButton.place(x=18, y=80)
+    delButton.place(x=240, y=80)
+    delAllButton.place(x=460, y=80)
+    exitButton.place(x=17, y=330)
+
+    taskListbox = Listbox(functionsFrame,
+                          width=57,
+                          height=7,
+                          font='bold',
+                          selectmode='SINGLE',
+                          background='WHITE',
+                          foreground='BLACK',
+                          selectbackground='#D4AC0D',
+                          selectgoreground='BLACK')
