@@ -2,7 +2,9 @@
 
 include:
 
-+ FizzBuzz
-+ tic-tac-toe
-+ neuralNetwork
++ FizzBuzz.py
++ tic-tac-toe.py
++ neuralNetwork.py
 + piano.apk
++ balloon.apk
++ to-do-list.py
