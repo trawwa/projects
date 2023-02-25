@@ -52,20 +52,20 @@ public class SQLManage{
 
     public void balCheck(int id) throws SQLException{
         String str = "SELECT bal FROM users WHERE id =" + id;
-        Statement stm = con.createStatemens();
+        Statement stm = con.createStatement();
         ResultSet rst = stm.executeQuery(str);
         rst.next();
-        return rst.getinit("bal");
+        return rst.getInt("bal");
     }
 
     public ResultSet stmt(int id) throws SQLException{
         String str = "SELECT * FROM transactions WHERE id =" + id + "order bu transid desc";
         Statements stm = con.createStatement();
-        ResulteSet rst = stm.executeQuery(str);
-        return ret
+        ResultsSet rst = stm.executeQuery(str);
+        return rst;
     }
-    public void adding(String card, String name, String bal) throws  SQLEXception{
-        String str = " INSERT INTO users (card, pin. uname, bal) values(" +card + ", "+pin+", "+name+", "+bal+7")";
+    public void adding(String card, String name, String bal) throws SQLEXception{
+        String str = "INSERT INTO users (card, pin, uname, bal) values (" + card + ", "+pin+", "+name+", "+bal+")";
         Statement stm = con.createStatement();
         stm.executeUpdate(str);
     }
