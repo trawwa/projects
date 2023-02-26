@@ -13,19 +13,19 @@ public class SQLManage{
         String usr = "root";
         String pass = "password";
         String url = "jdbc:mysql://localhost:3306/atm";
-        con - DriverManager.getConnection(url, usr, pass);
+        con = DriverManager.getConnection(url, usr, pass);
     }
 
     public ResultSet check(String usr, String pass) throws SQLException {
         String str = "SELECT * FROM users WHERE card = " + usr + " AND pin = " + pass + "";
-        Statement stm = con.createStatment();
+        Statement stm = con.createStatement();
         ResultSet rst = stm.executeQuery(str);
         return rst;
     }
 
     public void deposit(int amt, int id) throws SQLException {
         String str = "UPDATE users SET bal = bal + " + amt + "WHERE id = " + id;
-        Statements stm = con.createStatements();
+        Statement stm = con.createStatement();
         stm.executeUpdate(str);
         int bal = balCheck(id);
         str = "INSERT INTO transactions (id, amount, stat, bal) VALUES(" + id + ", " + amt + ", 'dep', " + bal +")";
@@ -33,7 +33,7 @@ public class SQLManage{
         stm.executeUpdate(str);
     }
 
-    public int withdraw(int amt, int id) throws SQLEXception {
+    public int withdraw(int amt, int id) throws SQLException {
         int bal = balCheck(id);
         if(bal >= amt) {
             String str = "UPDATE users SET bal = bal - "+amt+"WHERE id = "+id;
@@ -44,10 +44,10 @@ public class SQLManage{
         return 0;
     }
 
-    public void pinchange(String pin, int id) throw SQLException {
+    public void pinchange(String pin, int id) throws SQLException {
         String str = "UPDATE usets SET pin = " +pin+ "Where id " + id;
-        Statements stm = con.createStatement();
-        stm.execiteUpdate(str);
+        Statement stm = con.createStatement();
+        stm.executeUpdate(str);
     }
 
     public void balCheck(int id) throws SQLException{
@@ -60,11 +60,11 @@ public class SQLManage{
 
     public ResultSet stmt(int id) throws SQLException{
         String str = "SELECT * FROM transactions WHERE id =" + id + "order bu transid desc";
-        Statements stm = con.createStatement();
-        ResultsSet rst = stm.executeQuery(str);
+        Statement stm = con.createStatement();
+        ResultSet rst = stm.executeQuery(str);
         return rst;
     }
-    public void adding(String card, String name, String bal) throws SQLEXception{
+    public void adding(String card, String name, String bal) throws SQLException{
         String str = "INSERT INTO users (card, pin, uname, bal) values (" + card + ", "+pin+", "+name+", "+bal+")";
         Statement stm = con.createStatement();
         stm.executeUpdate(str);
