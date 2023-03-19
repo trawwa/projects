@@ -80,7 +80,7 @@ public class AddUser {
                     if(balField.getText().equals(""))
                         balField.setText("0");
                     try{
-                        manage.adding(atmField.getText(), pinField.getText(), nmField.getText(), balField.getText());
+                        manage.adding(atmField.getText(), pinField.getText(), nmField.getText(), balField.getText(), null);
                     } catch (SQLException e1){
                         e1.printStackTrace();
                     }

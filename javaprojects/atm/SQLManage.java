@@ -30,7 +30,7 @@ public class SQLManage{
         int bal = balCheck(id);
         str = "INSERT INTO transactions (id, amount, stat, bal) VALUES(" + id + ", " + amt + ", 'dep', " + bal +")";
         Statement stm2 = con.createStatement();
-        stm.executeUpdate(str);
+        stm2.executeUpdate(str);
     }
 
     public int withdraw(int amt, int id) throws SQLException {
@@ -38,7 +38,7 @@ public class SQLManage{
         if(bal >= amt) {
             String str = "UPDATE users SET bal = bal - "+amt+"WHERE id = "+id;
             Statement stm = con.createStatement();
-            stm2.executeUpdate(str);
+            stm.executeUpdate(str);
             return 1;
         }
         return 0;
@@ -50,7 +50,7 @@ public class SQLManage{
         stm.executeUpdate(str);
     }
 
-    public void balCheck(int id) throws SQLException{
+    public int balCheck(int id) throws SQLException{
         String str = "SELECT bal FROM users WHERE id =" + id;
         Statement stm = con.createStatement();
         ResultSet rst = stm.executeQuery(str);
@@ -59,13 +59,13 @@ public class SQLManage{
     }
 
     public ResultSet stmt(int id) throws SQLException{
-        String str = "SELECT * FROM transactions WHERE id =" + id + "order bu transid desc";
+        String str = "SELECT * FROM transactions WHERE id =" + id + "order by transid desc";
         Statement stm = con.createStatement();
         ResultSet rst = stm.executeQuery(str);
         return rst;
     }
-    public void adding(String card, String name, String bal) throws SQLException{
-        String str = "INSERT INTO users (card, pin, uname, bal) values (" + card + ", "+pin+", "+name+", "+bal+")";
+    public void adding(String card, String pin, String name, String bal, String string) throws SQLException{
+        String str = "INSERT INTO users (card, pin, uname, bal)values(" + card + ", "+pin+", "+name+", "+bal+")";
         Statement stm = con.createStatement();
         stm.executeUpdate(str);
     }

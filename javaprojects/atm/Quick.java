@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 public class Quick {
-    public void quickView(int d) throws SQLException {
+    public void quickView(int id) throws SQLException {
 
         Operations oper = new Operations();
 

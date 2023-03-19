@@ -64,7 +64,7 @@ public class Home {
                 frame.dispose();
             }
         });
-        deposit.addMouseListener(new MouseAdapter()){
+        deposit.addMouseListener(new MouseAdapter(){
             public void mousePressed(MouseEvent e){
                 try{
                     operations.opView("Deposit Amount", id);
@@ -96,7 +96,7 @@ public class Home {
             }
         });
         pinchange.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent e {
+            public void mousePressed(MouseEvent e) {
                 try{
                     operations.opView("New PIN", id);
                 } catch (SQLException e1){
