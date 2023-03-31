@@ -19,7 +19,7 @@ public class Admin {
         add.setFont(new Font("Rockwell", Font.BOLD, 25));
         frame.add(add);
         add.addActionListener(new ActionListener() {
-            @Owerride
+            @Override
             public void actionPerformed(ActionEvent e) {
                 AddUser user = new AddUser();
                 try {
@@ -38,7 +38,7 @@ public class Admin {
         exit.setFont(new Font("Rockwell", Font.BOLD, 25));
         frame.add(exit);
         exit.addActionListener(new ActionListener() {
-            @Owerride
+            @Override
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }

@@ -1,9 +1,9 @@
 package javaprojects.atm;
 
 import java.awt.Font;
-import jawa.awt.event.ActionEvent;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLExeption;
+import java.sql.SQLException;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -24,7 +24,7 @@ public class AddUser {
         Success success = new Success();
 
         //----------NAME----------
-        JLabel name = new Jlabel("Name: ");
+        JLabel name = new JLabel("Name: ");
         name.setBounds(50, 200, 100, 25);
         name.setFont(txt);
         JTextField nmField = new JTextField();
@@ -34,7 +34,7 @@ public class AddUser {
         //-------------------------
 
         //-----------ATMNUMBER-----
-        JlLabel atmno = new JLabel("ATM Card Number: ");
+        JLabel atmno = new JLabel("ATM Card Number: ");
         atmno.setBounds(50, 300, 500, 25);
         atmno.setFont(txt);
         atmField = new JTextField();
@@ -60,7 +60,7 @@ public class AddUser {
         bal.setBounds(350, 400, 500, 25);
         bal.setFont(txt);
         JTextField balField = new JTextField();
-        blField.setBounds(350, 430, 200, 30);
+        balField.setBounds(350, 430, 200, 30);
         frame.add(balField);
         frame.add(bal);
         //---------------------------
@@ -80,7 +80,7 @@ public class AddUser {
                     if(balField.getText().equals(""))
                         balField.setText("0");
                     try{
-                        manage.adding(atmField.getText(), pinField.getText(), nmField.getText(), balField.getText());
+                        manage.adding(atmField.getText(), pinField.getText(), nmField.getText(), balField.getText(), null);
                     } catch (SQLException e1){
                         e1.printStackTrace();
                     }

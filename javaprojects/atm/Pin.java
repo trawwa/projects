@@ -18,6 +18,7 @@ public class Pin {
         Font txt = new Font("", Font.BOLD, 15);
         Home home = new Home();
         Admin admin = new Admin();
+        
 
         //-------PASSWORD--------
         JLabel pswd = new JLabel("ENTER YOUR PIN");
@@ -33,14 +34,14 @@ public class Pin {
         //--------BUTTON----------
         JButton cont = new JButton("CONTINUE");
         cont.setBounds(200, 400, 200, 50);
-        cont.setFont(new Font("Rockwell", Font.BOLD. 25));
+        cont.setFont(new Font("Rockwell", Font.BOLD, 25));
         frame.add(cont);
         cont.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e){
                 try {
                     SQLManage man = new SQLManage();
-                    ResultSet rst = man.check(cardNum, pswdField.getText());
+                    ResultSet rst = man.check(cardNum, pswdField.getPassword().toString());
                     if(rst.next()) {
                         if(rst.getString("card").equals("admin")) {
                             admin.adminView();
