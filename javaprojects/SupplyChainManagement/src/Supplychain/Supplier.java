@@ -4,8 +4,8 @@ import javax.swing.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.loggin.Level;
-import java.util.loggin.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Supplier{
     private JFrame mainFrame;
@@ -42,7 +42,7 @@ public class Supplier{
         statusLabel.setSize(350,400);
 
         controlPanel = new JPanel();
-        controlPanel.setLayout(350,400);
+        controlPanel.setLayout(new FlowLayout());
 
         mainFrame.add(headerLabel);
         mainFrame.add(controlPanel);
@@ -56,6 +56,54 @@ public class Supplier{
         headerLabel.setFont(new Font(null, Font.BOLD, 27));
         headerLabel.setForeground(Color.black);
 
-        name = new JLabel("Enter Supplier Name")
+        name = new JLabel("Enter Supplier Name");
+        JTextField tf2 = new JTextField();
+        tf2.setSize(100,30);
+
+        email = new JLabel("Enter Mail Id");
+        JTextField tf3 = new JTextField();
+        tf3.setSize(100,30);
+
+        password = new JLabel("Enter Password");
+        JTextField tf4 = new JTextField();
+        tf4.setSize(100,30);
+
+        JButton okButton = new JButton("Create");
+        okButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e){
+                PreparedStatement pst;
+                DBConnection con = new DBConnection();
+                try{
+                    pst = con.mkDataBase().prepareStatement("UPDATE supplychain SET f_quantity=?, f_prize=? where f_name=?");
+                    pst.setString(3, tf2.getText());
+                    pst.setDouble(2, Double.parseDouble(tf3.getText()));
+                    pst.setInt(1, Integer.parseInt(tf4.getText()));
+                    pst.execute();
+
+                    JOptionPane.showMessageDialog(null, "Suplier Account Created!" + tf2.getText());
+                    mainFrame.setVisible(false);
+
+                }catch(Exception ex){
+                    System.out.println(ex);
+                    JOptionPane.showMessageDialog(null, "Error");
+                }finally{
+
+                }
+            }
+        });
+
+        JPanel jp = new JPanel();
+        jp.add(name);
+        jp.add(tf2);
+        jp.add(email);
+        jp.add(tf3);
+        jp.add(password);
+        jp.add(tf4);
+
+        jp.setSize(200,200);
+        jp.setLayout(experimentLayout);
+        jp.add(okButton);
+        mainFrame.setVisible(true);
+        mainFrame.setLocationRelativeTo(null);
     }
 }
