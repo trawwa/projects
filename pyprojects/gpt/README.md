@@ -1,1 +1,1 @@
-This project for my learning ONLY.
+This project is for my learning ONLY.
