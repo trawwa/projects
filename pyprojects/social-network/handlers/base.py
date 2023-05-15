@@ -26,7 +26,15 @@ class Login(web.View):
         return dict(text="Login Aiohttp!, {}".format(text))
 
     async def post(self):
-        return web.Response(text="login aiohttp")
+        data = await self.post()
+        login = data['login']
+        password = data['password']
+
+        session = await get_session(self)
+        session['user'] = {"login": login}
+
+        location = self.app.router['index'].url_for()
+        return web.Response(location=location)
 
 
 class Signup(web.View):
