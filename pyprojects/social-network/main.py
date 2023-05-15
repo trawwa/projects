@@ -14,7 +14,7 @@ def main():
     app = web.Application()
 
     key = fernet.Fernet.generate_key()
-    secret_key = base64.urlsafe_b64encode(key)
+    secret_key = base64.urlsafe_b64decode(key)
     setup(app, EncryptedCookieStorage(secret_key))
 
     setup_routes(app)
