@@ -22,7 +22,10 @@ class Login(web.View):
         session = await get_session(self)
         session['last visit'] = str(datetime.utcnow())
         last_visit = session['last visit']
-        text = 'Last visited: {}'.format(last_visit)
+
+        db = self.app['db']
+        user = await User.get_user(uid=1)
+        document = await db.test.find_one()
         return dict(text="Login Aiohttp!, {}".format(text))
 
     async def post(self):
