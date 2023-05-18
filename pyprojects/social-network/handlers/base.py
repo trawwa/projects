@@ -26,7 +26,7 @@ class Login(web.View):
         db = self.app['db']
         user = await User.get_user(uid=1)
         document = await db.test.find_one()
-        return dict(text="Login Aiohttp!, {}".format(text))
+        return dict(text="Login Aiohttp!, Last Visited: {}".format(last_visit))
 
     async def post(self):
         data = await self.post()
@@ -37,7 +37,7 @@ class Login(web.View):
         session['user'] = {"login": login}
 
         location = self.app.router['index'].url_for()
-        return web.Response(location=location)
+        return web.HTTPFound(location=location)
 
 
 class Signup(web.View):
