@@ -24,7 +24,7 @@ def load_encoder_hparams_and_params(model_size, models_dir):
     assert model_size in ["124M", "355M", "774M", "1558M"]
 
     model_dir = os.path.join(models_dir, model_size)
-    tf_checkpoint_path = tf.train.latest.checkpoint(model_dir)
+    tf_checkpoint_path = tf.train.latest_checkpoint(model_dir)
     if not tf_checkpoint_path: # download files if necessary
         os.makedirs(model_dir, exist_ok=True)
         download_gpt2_files(model_size, model_dir)
