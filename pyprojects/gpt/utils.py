@@ -40,7 +40,7 @@ def download_gpt2_files(model_size, model_dir):
                     pbar.update(chunk_size)
 
 
-def load_encoder_hparams_from_tf_checkpoint(tf_checkpoint_path, hparams):
+def load_gpt2_params_from_tf_checkpoint(tf_checkpoint_path, hparams):
     def set_in_nested_dict(d, keys, val):
         if not keys:
             return val
@@ -49,11 +49,11 @@ def load_encoder_hparams_from_tf_checkpoint(tf_checkpoint_path, hparams):
         d[keys[0]] = set_in_nested_dict(d[keys[0]], keys[1:], val)
         return d
 
-    init_vars = tf.train.list_variables(tf_checkpoint_path)
+    #init_vars = tf.train.list_variables(tf_checkpoint_path)
     params = {"blocks": [{} for _ in range(hparams["n_layer"])]}
-    for name, _ in init_vars:
+    for name, _ in tf.train.list_variables(tf_checkpoint_path):
         array = np.squeeze(tf.train.load_variable(tf_checkpoint_path, name))
-        name = name.removeprefix("model/")
+        name = name[len("model/") :]
         if name.startswith("h"):
             m = re.match(r"h([0-9]+)/(.*)", name)
             n = int(m[1])
@@ -77,6 +77,6 @@ def load_encoder_hparams_and_params(model_size, models_dir):
 
     encoder = get_encoder(model_size, model_dir)
     hparams = json.load(open(os.path.join(models_dir, "hparams.json")))
-    params = load_encoder_hparams_from_tf_checkpoint(tf_checkpoint_path, hparams)
+    params = load_gpt2_params_from_tf_checkpoint(tf_checkpoint_path, hparams)
 
     return encoder, hparams, params
