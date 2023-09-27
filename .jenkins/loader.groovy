@@ -4,7 +4,7 @@ pipeline {
         string(name: 'promt', defaultValue: '', description: 'Здесь нужно ввести запрос к GPT.')
     }
     stages {
-        stage ("Загрузка скрипта") {
+        stage("Загрузка скрипта") {
             step {
                 def gpt2 
                 fileLoader.withGit('https://github.com/trawwa/projects.git', 'main', null, '') {
@@ -12,10 +12,10 @@ pipeline {
                 }
             }
         }
-        stage ("Установка зависимостей") {
+        stage("Установка зависимостей") {
             sh "pip install -r requirements.txt"
         }
-        stage ("Выполнение скрипта") {
+        stage("Выполнение скрипта") {
             step {
                 gpt2.main()
             }
