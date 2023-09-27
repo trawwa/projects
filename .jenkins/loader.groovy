@@ -15,11 +15,17 @@ pipeline {
             }
         }
         stage("Установка зависимостей") {
-            sh "pip install -r requirements.txt"
+            steps {
+                script{
+                    sh "pip install -r requirements.txt"
+                }
+            }
         }
         stage("Выполнение скрипта") {
             steps {
-                gpt2.main()
+                script {
+                    gpt2.main()
+                }
             }
         }
     }
