@@ -6,9 +6,11 @@ pipeline {
     stages {
         stage("Загрузка скрипта") {
             steps {
-                def gpt2 
-                fileLoader.withGit('https://github.com/trawwa/projects.git', 'main', null, '') {
+                script {
+                    def gpt2 
+                    fileLoader.withGit('https://github.com/trawwa/projects.git', 'main', null, '') {
                     gpt2 = fileLoader.load('pyprojects/gpt/gpt2.py');
+                }
                 }
             }
         }
