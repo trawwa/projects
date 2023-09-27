@@ -1,7 +1,7 @@
 pipeline {
     agent any
-    parametres {
-        string(name: "promt", defaultValue: "", description: "Здесь нужно ввести запрос к GPT.")
+    parameters {
+        string(name: 'promt', defaultValue: '', description: 'Здесь нужно ввести запрос к GPT.')
     }
     stages {
         stage ("Загрузка скрипта") {
