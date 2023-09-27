@@ -5,7 +5,7 @@ pipeline {
     }
     stages {
         stage("Загрузка скрипта") {
-            step {
+            steps {
                 def gpt2 
                 fileLoader.withGit('https://github.com/trawwa/projects.git', 'main', null, '') {
                     gpt2 = fileLoader.load('pyprojects/gpt/gpt2.py');
@@ -16,7 +16,7 @@ pipeline {
             sh "pip install -r requirements.txt"
         }
         stage("Выполнение скрипта") {
-            step {
+            steps {
                 gpt2.main()
             }
         }
