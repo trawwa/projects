@@ -9,7 +9,7 @@ pipeline {
                 script {
                     def gpt2 
                     fileLoader.withGit('https://github.com/trawwa/projects.git', 'main', null, '') {
-                    gpt2 = fileLoader.load('pyprojects/gpt/gpt2.py');
+                        gpt2 = fileLoader.load('pyprojects/gpt/gpt2.py');
                 }
                 }
             }
@@ -24,6 +24,7 @@ pipeline {
         stage("Выполнение скрипта") {
             steps {
                 script {
+                    //sh "python gpt2.py ${promt}"
                     gpt2.main()
                 }
             }
