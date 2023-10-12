@@ -10,7 +10,7 @@ pipeline {
                     def gpt2 
                     fileLoader.withGit('https://github.com/trawwa/projects.git', 'main', null, '') {
                         gpt2 = load('pyprojects/gpt');
-                }
+                    }  
                 }
             }
         }
@@ -28,6 +28,11 @@ pipeline {
                     gpt2.main()
                 }
             }
+        }
+    }
+    post {
+        always {
+            cleanWs()
         }
     }
 }
