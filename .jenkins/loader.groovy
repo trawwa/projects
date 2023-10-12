@@ -24,8 +24,8 @@ pipeline {
         stage("Выполнение скрипта") {
             steps {
                 script {
-                    //sh "python gpt2.py ${promt}"
-                    gpt2.main()
+                    sh "python gpt2.py ${promt}"
+                    //gpt2.main()
                 }
             }
         }
