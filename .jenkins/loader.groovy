@@ -24,6 +24,7 @@ pipeline {
         stage("Выполнение скрипта") {
             steps {
                 script {
+                    sh "pip install -r requirements.txt"
                     sh "python3 ./pyprojects/gpt/gpt2.py ${promt}"
                     //gpt2.main()
                 }
