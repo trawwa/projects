@@ -17,7 +17,7 @@ pipeline {
         stage("Установка зависимостей") {
             steps {
                 script{
-                    sh "pip3 install -r requirements.txt"
+                    sh "pip3 install -r ./pyprojects/gpt/requirements.txt"
                 }
             }
         }
