@@ -14,13 +14,13 @@ pipeline {
         //         }
         //     }
         
-        stage("Установка зависимостей") {
-            steps {
-                script{
-                    sh "pip install -r requirements.txt"
-                }
-            }
-        }
+        // stage("Установка зависимостей") {
+        //     steps {
+        //         script{
+        //             sh "pip install -r requirements.txt"
+        //         }
+        //     }
+        // }
         stage("Выполнение скрипта") {
             steps {
                 script {
