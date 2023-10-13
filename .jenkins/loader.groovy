@@ -14,17 +14,16 @@ pipeline {
         //         }
         //     }
         
-        // stage("Установка зависимостей") {
-        //     steps {
-        //         script{
-        //             sh "pip install -r requirements.txt"
-        //         }
-        //     }
-        // }
+        stage("Установка зависимостей") {
+            steps {
+                script{
+                    sh "pip3 install -r requirements.txt"
+                }
+            }
+        }
         stage("Выполнение скрипта") {
             steps {
                 script {
-                    sh "pip install -r requirements.txt"
                     sh "python3 ./pyprojects/gpt/gpt2.py ${promt}"
                     //gpt2.main()
                 }
