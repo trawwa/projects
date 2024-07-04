@@ -10,3 +10,5 @@ pyprojects/algorythms/quickSort.py
 javaprojects/tournament.java
 javaprojects/Tournament/Game.java
 pyprojects/gpt/models
+js/client-server-qraphql-example/client/node_modules
+js/client-server-qraphql-example/server/node_modules
