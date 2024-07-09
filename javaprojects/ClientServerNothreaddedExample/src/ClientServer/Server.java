@@ -1,11 +1,11 @@
- //package com.objectmentor.clientserver.nothreaded; TODO: Разобраться с package?
+package javaprojects.ClientServerNothreaddedExample.src.ClientServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 
-import common.MessageUtils;
+import javaprojects.ClientServerNothreaddedExample.src.ClientServer.MessageUtils;
 
 public class Server implements Runnable {
     ServerSocket serverSocket;
