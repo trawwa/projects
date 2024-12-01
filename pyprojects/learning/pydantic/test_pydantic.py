@@ -36,4 +36,4 @@ to_dict = dima.model_dump()
 to_json = dima.model_dump_json()
 
 print(to_dict, type(to_dict))
-print(to_json, type(to_json))
+print(to_json, type(to_json)) 
