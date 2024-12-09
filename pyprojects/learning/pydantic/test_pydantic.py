@@ -1,30 +1,40 @@
-from pydantic import BaseModel, field_validator, model_validator, computed_field, Field
+from pydantic import BaseModel, field_validator, model_validator, computed_field, Field, ConfigDict
 from datetime import date
 from dateutil.relativedelta import relativedelta
 from uuid import uuid4
+from typing_extensions import Annotated
 
 
 class User(BaseModel):
-    id: int = Field(
+    id: Annotated[
+        int,
+        Field(
         default=1,
-        description="Уникальный идентификатор пользователя"
-        )
-    name: str = Field(
+        description="Уникальный идентификатор пользователя",
+        gt = 0
+        )]
+    name: Annotated[
+        str,
+        Field(
         min_length=3,
         max_length=20,
         default="John Doe",
         title="Имя пользователя",
         description="Полное имя"
-        )
-    role: str = Field(
+        )]
+    email: Annotated[
+        str,
+        Field(
+        pattern=r"[^@]+@[^@]+\.[^@]+",
+        description="Электронная почта должна быть в корректном формате"
+        )]
+    role: Annotated[
+        str,
+        Field(
         default="user",
         alias="user_role",
         description="Роль пользователя в системе"
-        )
-    email: str = Field(
-        pattern=r"[^@]+@[^@]+\.[^@]+",
-        description="Электронная почта должна быть в корректном формате"
-        )
+        )]
     phone_number: str = Field(
         pattern=r"^\+\d{1,3}\s?\d{4,14}$",
         description="Номер телефона должен быть в формате +123456789"
@@ -61,6 +71,12 @@ class Item(BaseModel):
 
 class Config(BaseModel):
     debug_mode: bool = Field(repr=False)
+
+
+class MyModel(BaseModel):
+    model_config = ConfigDict(
+        from_attributes=True
+        )
 
 
 
