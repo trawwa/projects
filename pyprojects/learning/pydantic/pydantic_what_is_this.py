@@ -11,8 +11,8 @@
 
 # # data validator
 # # validate_user = ExampleUser(
-# #     id='first', 
-# #     name='Alice', 
+# #     id='first',
+# #     name='Alice',
 # #     age=25
 # # )
 
@@ -60,7 +60,7 @@
 #         if v < 18:
 #             raise ValueError('Age must be at least 18')
 #         return v
-    
+
 
 # # user = UserWithValidation(
 # #     id=1,
@@ -101,7 +101,7 @@
 #     items: list[str]
 #     quantities: tuple[int, int, int]
 
-# # Dicts 
+# # Dicts
 
 # class Config(BaseModel):
 #     settings: dict[str, str]
@@ -131,10 +131,11 @@
 #     website: AnyUrl
 
 
-# Data models
-from pydantic import BaseModel, EmailStr
 from datetime import datetime
-from uuid import UUID
+from uuid import UUID, uuid4
+
+# Data models
+from pydantic import BaseModel, EmailStr, Field, field_validator
 
 # class User(BaseModel):
 #     id: UUID
@@ -143,7 +144,6 @@ from uuid import UUID
 #     is_active: bool = True
 #     created_at: datetime = datetime.now()
 
-from uuid import uuid4
 
 # try:
 #     user = User(
@@ -159,6 +159,7 @@ from uuid import uuid4
 
 # Complex data models
 
+
 class Address(BaseModel):
     street: str
     city: str
@@ -171,13 +172,36 @@ class UserWithAddress(BaseModel):
     email: str
     address: Address
 
-address = Address(street="123 Main St", city="New York", country="USA")
 
 user = UserWithAddress(
     id=uuid4(),
-    username='alice',
-    email='alice@example.com',
-    address=address
+    username="alice",
+    email="alice@example.com",
+    address=Address(
+        street="123 Main St",
+        city="New York",
+        country="USA",
+    ),
 )
 
-print(user)
+
+class Product(BaseModel):
+    id: UUID
+    name: str
+    price: float
+    tags: list[str] = []
+    metadata: dict[str, str] = {}
+
+
+class User(BaseModel):
+    id: UUID
+    username: str
+    email: str = Field(alias="user_email")
+    is_active: bool = True
+    created_at: datetime = datetime.now()
+
+    @field_validator("age")
+    def check_age(cls, v):
+        if v < 18:
+            raise ValueError("Age must be at least 18")
+        return v
